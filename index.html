@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AETHERIA // Next-Gen Cybernetic Gallery</title>
+  <meta name="description" content="A futuristic, responsive, and cinematic image gallery utilizing advanced 3D perspective grids, glassmorphism UI, mouse-follow neon glows, and custom lag cursor tracking." />
+  
+  <!-- Preconnect to Google Fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Futuristic Cursor (Dot + Lagging Neon Ring) -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
+
+  <!-- Background Ambient System (Canvas for floating micro-particles + static/animated glowing grid overlays) -->
+  <div class="bg-system">
+    <canvas id="particle-canvas"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="radial-darkness"></div>
+    <div class="blur-blob blob-1"></div>
+    <div class="blur-blob blob-2"></div>
+    <div class="blur-blob blob-3"></div>
+  </div>
+
+  <!-- Main Cybernetic Container -->
+  <div class="viewport-container">
+    
+    <!-- Top System Header Bar -->
+    <header class="sys-header">
+      <div class="sys-logo" data-magnetic>
+        <span class="logo-accent">//</span> AETHERIA
+      </div>
+      <div class="sys-status-bar">
+        <span class="status-indicator"></span>
+        <span class="status-text" id="sys-clock">SYSTEM ACTIVE // SECURE_UPLINK // UTC --:--:--</span>
+      </div>
+    </header>
+
+    <!-- Infinite Auto-Scroll Telemetry Section (Marquee) -->
+    <section class="ticker-section">
+      <div class="ticker-wrapper">
+        <div class="ticker-track">
+          <div class="ticker-item"><span>SECTOR: 09_CORE</span> // NEURAL_NET_STATUS: 99.8% // COGNITIVE_ARRAY_READY</div>
+          <div class="ticker-item"><span>GRID_LATENCY: 0.12ms</span> // PROTOCOL: ENCRYPTED // AI_DIRECTIVE: ENGAGED</div>
+          <div class="ticker-item"><span>PROJECT_COUNT: 09</span> // AETHERIA_V2.8_READY // USER_AUTHORIZATION: LEVEL_5</div>
+          <div class="ticker-item"><span>WARNING: UNKNOWN_NODE_DETECTED</span> // ISOLATING_PORT_8892 // PARALLAX_ENGINE: GO</div>
+          <!-- Duplicate for seamless scroll -->
+          <div class="ticker-item"><span>SECTOR: 09_CORE</span> // NEURAL_NET_STATUS: 99.8% // COGNITIVE_ARRAY_READY</div>
+          <div class="ticker-item"><span>GRID_LATENCY: 0.12ms</span> // PROTOCOL: ENCRYPTED // AI_DIRECTIVE: ENGAGED</div>
+          <div class="ticker-item"><span>PROJECT_COUNT: 09</span> // AETHERIA_V2.8_READY // USER_AUTHORIZATION: LEVEL_5</div>
+          <div class="ticker-item"><span>WARNING: UNKNOWN_NODE_DETECTED</span> // ISOLATING_PORT_8892 // PARALLAX_ENGINE: GO</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Title & Cyber-description -->
+    <section class="hero-section text-reveal">
+      <div class="cyber-badge">VISUAL DATA INTERFACE</div>
+      <h1 class="hero-title" data-text="CYBERNETIC_SPATIAL_GALLERY">CYBERNETIC_SPATIAL_GALLERY</h1>
+      <p class="hero-subtitle">
+        Explore a responsive multi-dimensional visual matrix fusing deep glassmorphic structures, real-time mouse-sensitive vector fields, and high-contrast neon illumination.
+      </p>
+    </section>
+
+    <!-- Category Filters Navigation Section -->
+    <section class="filter-section">
+      <div class="filter-glass-container">
+        <button class="filter-btn active" data-filter="all" data-magnetic>
+          <span class="btn-scanlines"></span>
+          <span class="btn-text">ALL_SECTORS</span>
+        </button>
+        <button class="filter-btn" data-filter="cyber-cities" data-magnetic>
+          <span class="btn-scanlines"></span>
+          <span class="btn-text">CYBER-CITIES</span>
+        </button>
+        <button class="filter-btn" data-filter="beings" data-magnetic>
+          <span class="btn-scanlines"></span>
+          <span class="btn-text">CYBER_BEINGS</span>
+        </button>
+        <button class="filter-btn" data-filter="vehicles" data-magnetic>
+          <span class="btn-scanlines"></span>
+          <span class="btn-text">SCI-FI_VEHICLES</span>
+        </button>
+        <button class="filter-btn" data-filter="tech" data-magnetic>
+          <span class="btn-scanlines"></span>
+          <span class="btn-text">FUTURISTIC_TECH</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Responsive Mosaic Gallery Grid -->
+    <main class="gallery-section">
+      <div class="gallery-grid" id="gallery-grid">
+        
+        <!-- Card 1 (Large 2x2 featured) -->
+        <div class="gallery-card grid-col-2 grid-row-2 reveal-item" data-category="cyber-cities">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=1200&auto=format&fit=crop" alt="Neo-Chiba Transit Hub" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER-CITIES</span>
+            <h3 class="card-title">Neo-Chiba Transit Hub</h3>
+            <p class="card-description">Multi-layered autonomous transport lines descending into Chiba's lower industrial sprawl.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 (Tall 1x2) -->
+        <div class="gallery-card grid-col-1 grid-row-2 reveal-item" data-category="cyber-cities">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop" alt="Kabukicho Sector 9" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER-CITIES</span>
+            <h3 class="card-title">Kabukicho Sector 9</h3>
+            <p class="card-description">Damp corridors reflecting holographic noodle stands and black-market software vendor grids.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="beings">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=800&auto=format&fit=crop" alt="Project K-47 Android" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER_BEINGS</span>
+            <h3 class="card-title">Project K-47 Android</h3>
+            <p class="card-description">Fourth-generation synthetic consciousness unit undergoing self-diagnostics.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="beings">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=1200&auto=format&fit=crop" alt="Neural Uplink Interface" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER_BEINGS</span>
+            <h3 class="card-title">Neural Uplink Interface</h3>
+            <p class="card-description">Sub-dermal synaptic ports connected directly to the Global Web matrix.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="vehicles">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=800&auto=format&fit=crop" alt="Aether Overdrive V-8" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">SCI-FI_VEHICLES</span>
+            <h3 class="card-title">Aether Overdrive V-8</h3>
+            <p class="card-description">Fusion-core hovercraft designed for long-range orbital bypass transits.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="vehicles">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop" alt="Orbital Drone Pod" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">SCI-FI_VEHICLES</span>
+            <h3 class="card-title">Orbital Drone Pod</h3>
+            <p class="card-description">Autonomous exploration pod equipped with quantum spatial mapping sensors.</p>
+          </div>
+        </div>
+
+        <!-- Card 7 (Tall 1x2) -->
+        <div class="gallery-card grid-col-1 grid-row-2 reveal-item" data-category="tech">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop" alt="Cortex-VR Neural Net" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FUTURISTIC_TECH</span>
+            <h3 class="card-title">Cortex-VR Neural Net</h3>
+            <p class="card-description">Immersive deep-dive visor rendering real-time spatial quantum state vectors.</p>
+          </div>
+        </div>
+
+        <!-- Card 8 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="tech">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Quantum Core V2.8" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FUTURISTIC_TECH</span>
+            <h3 class="card-title">Quantum Core V2.8</h3>
+            <p class="card-description">Sub-atomic processor array driving neural net operations for system operations.</p>
+          </div>
+        </div>
+
+        <!-- Card 9 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="tech">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" alt="A.I. Core Telemetry" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FUTURISTIC_TECH</span>
+            <h3 class="card-title">A.I. Core Telemetry</h3>
+            <p class="card-description">Decrypted memory stream showing artificial hive mind decision sequences.</p>
+          </div>
+        </div>
+
+        <!-- Card 10 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="cyber-cities">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop" alt="Chongqing Grid Overpass" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER-CITIES</span>
+            <h3 class="card-title">Chongqing Grid Overpass</h3>
+            <p class="card-description">Multi-tier highway networks hovering over massive glowing neon cybernetic skyscrapers.</p>
+          </div>
+        </div>
+
+        <!-- Card 11 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="beings">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop" alt="Cybernetic Prosthetic Unit" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER_BEINGS</span>
+            <h3 class="card-title">Cybernetic Prosthetic Unit</h3>
+            <p class="card-description">A modular carbon-fiber hand interface displaying complex servo linkages and neural synaptics.</p>
+          </div>
+        </div>
+
+        <!-- Card 12 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="vehicles">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=800&auto=format&fit=crop" alt="Hypersonic Jet Intake" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">SCI-FI_VEHICLES</span>
+            <h3 class="card-title">Hypersonic Jet Intake</h3>
+            <p class="card-description">Thermal jet engine intake bay with glowing tubes ready for sub-orbital propulsion.</p>
+          </div>
+        </div>
+
+        <!-- Card 13 (Tall 1x2) -->
+        <div class="gallery-card grid-col-1 grid-row-2 reveal-item" data-category="tech">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" alt="Aether Server Array" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FUTURISTIC_TECH</span>
+            <h3 class="card-title">Aether Server Array</h3>
+            <p class="card-description">Massive server towers glowing with liquid nitrogen lines and blue fiber optic connections.</p>
+          </div>
+        </div>
+
+        <!-- Card 14 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="cyber-cities">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop" alt="Void Horizon Boulevard" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER-CITIES</span>
+            <h3 class="card-title">Void Horizon Boulevard</h3>
+            <p class="card-description">Distant high-altitude skyscrapers glowing on the skyline of Neo-London during dusk.</p>
+          </div>
+        </div>
+
+        <!-- Card 15 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="beings">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=800&auto=format&fit=crop" alt="Bio-Synth Neural Growth" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER_BEINGS</span>
+            <h3 class="card-title">Bio-Synth Neural Growth</h3>
+            <p class="card-description">A synthetic brain core visual showing artificial synaptic neural pathways expanding.</p>
+          </div>
+        </div>
+
+        <!-- Card 16 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="vehicles">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1534067783941-51c9c23eccfd?q=80&w=800&auto=format&fit=crop" alt="Exosolar Cruiser Hull" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">SCI-FI_VEHICLES</span>
+            <h3 class="card-title">Exosolar Cruiser Hull</h3>
+            <p class="card-description">Outer heavy alloy plating of a deep-space visual hull reflecting nebular gas colors.</p>
+          </div>
+        </div>
+
+        <!-- Card 17 (Wide 2x1) -->
+        <div class="gallery-card grid-col-2 grid-row-1 reveal-item" data-category="tech">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=800&auto=format&fit=crop" alt="Cybernetic Node Interface" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FUTURISTIC_TECH</span>
+            <h3 class="card-title">Cybernetic Node Interface</h3>
+            <p class="card-description">Abstract digital telemetry tracking multiple decentralized nodes interacting.</p>
+          </div>
+        </div>
+
+        <!-- Card 18 (Normal 1x1) -->
+        <div class="gallery-card grid-col-1 grid-row-1 reveal-item" data-category="cyber-cities">
+          <div class="card-glow"></div>
+          <div class="card-border"></div>
+          <div class="card-skeleton"></div>
+          <div class="card-media-wrapper">
+            <img class="card-img" src="https://images.unsplash.com/photo-1508849789987-4e5333c12b78?q=80&w=800&auto=format&fit=crop" alt="Sector-8 Extraction Point" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">CYBER-CITIES</span>
+            <h3 class="card-title">Sector-8 Extraction Point</h3>
+            <p class="card-description">Vast thermal conduits feeding geothermal heat blocks into upper corporate grid structures.</p>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer Copyright & Matrix details -->
+    <footer class="sys-footer">
+      <div class="footer-data">
+        <span>LOC: W03_DEEPGRID</span> // <span>PORT: 9283</span> // <span>ENCODING: UTF-8</span>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 AETHERIA LABS. ALL POWER SECURED.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Interactive Lightbox Popup Modal -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-container">
+      
+      <!-- Close Trigger -->
+      <button class="lightbox-close" aria-label="Close Lightbox" data-magnetic>
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Previous Trigger -->
+      <button class="lightbox-nav prev" aria-label="Previous Image" data-magnetic>
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Next Trigger -->
+      <button class="lightbox-nav next" aria-label="Next Image" data-magnetic>
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Main Visual Display Wrapper -->
+      <div class="lightbox-content">
+        <div class="lightbox-media-wrapper">
+          <img class="lightbox-img" id="lightbox-img" src="" alt="Fullscreen view" />
+          
+          <!-- Holographic grid scan lines on visualizer -->
+          <div class="lightbox-scanline"></div>
+        </div>
+
+        <!-- Dynamic glass-bound information footer -->
+        <div class="lightbox-info">
+          <div class="lightbox-meta">
+            <span class="lightbox-tag" id="lightbox-tag">CYBER-CITIES</span>
+            <div class="lightbox-zoom-indicator">DOUBLE-CLICK TO ZOOM</div>
+          </div>
+          <h2 class="lightbox-title" id="lightbox-title">Image Title</h2>
+          <p class="lightbox-desc" id="lightbox-desc">Detailed spatial telemetry and context descriptions will render here on image trigger.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
